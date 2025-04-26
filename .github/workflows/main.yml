@@ -1,0 +1,35 @@
+name: Check APK Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      apk_url:
+        description: "URL of the APK file to check"
+        required: true
+        type: string
+
+jobs:
+  check-apk:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8' # 确保 Python 版本符合库的要求
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install androguard requests
+
+      - name: Download APK
+        run: |
+          curl -o downloaded_apk.apk "${{ github.event.inputs.apk_url }}"
+
+      - name: Run check.py
+        run: |
+          python check.py downloaded_apk.apk
