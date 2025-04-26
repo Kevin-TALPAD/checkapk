@@ -1,9 +1,6 @@
-# 安装依赖： pip install androguard requests
-
 import os
 from androguard.misc import AnalyzeAPK
 
-# 定义危险权限列表
 dangerous_permissions = [
     "android.permission.READ_SMS",
     "android.permission.SEND_SMS",
