@@ -1,5 +1,11 @@
 import os
 from androguard.misc import AnalyzeAPK
+from colorama import init
+import sys
+
+# 初始化 colorama 并强制启用宽字符支持
+init(convert=True, autoreset=True, strip=False)
+sys.stdout.reconfigure(encoding='utf-8')
 
 dangerous_permissions = [
     "android.permission.READ_SMS",
