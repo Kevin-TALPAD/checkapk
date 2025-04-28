@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install androguard requests
+          pip install androguard requests colorama
 
       - name: Download APK
         run: |
